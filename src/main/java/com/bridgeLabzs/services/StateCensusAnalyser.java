@@ -1,31 +1,38 @@
 package com.bridgeLabzs.services;
+
 import com.bridgeLabzs.exception.StateCensusAnalyserException;
 import com.bridgeLabzs.model.CSVStateCensus;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.Iterator;
 
-public class StateCensusAnalyser
-{
-    int count=1;
-    public int loadCensusCSVData(String path) throws StateCensusAnalyserException {
-        try (
-                Reader reader = Files.newBufferedReader(Paths.get(path));
-        ) {
-            CsvToBean<CSVStateCensus> csvStateCensuses = new CsvToBeanBuilder(reader)
-            .withType(CSVStateCensus.class)
-            .withIgnoreLeadingWhiteSpace(true)
-            .build();
+public class StateCensusAnalyser {
+    public static String CSV_FILE_PATH;
+    int count = 1;
 
-            Iterator<CSVStateCensus> csvStateCensusIterator = csvStateCensuses.iterator();
-            while (csvStateCensusIterator.hasNext())
-            {
-                CSVStateCensus csvStateCensus = csvStateCensusIterator.next();
-                System.out.println("Sr no. :" +count);
+    public StateCensusAnalyser(String filePath) {
+        CSV_FILE_PATH = filePath;
+    }
+
+    public int loadCensusCSVData() throws StateCensusAnalyserException {
+        try (
+                Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH))
+        ) {
+            CsvToBean<CSVStateCensus> csvToBean = new CsvToBeanBuilder(reader)
+                    .withType(CSVStateCensus.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
+
+            Iterator<CSVStateCensus> csvUserIterator = csvToBean.iterator();
+            while (csvUserIterator.hasNext()) {
+                CSVStateCensus csvStateCensus = csvUserIterator.next();
+                System.out.println("Sr no. :" + count);
                 System.out.println("State: " + csvStateCensus.getState());
                 System.out.println("Population: " + csvStateCensus.getPopulation());
                 System.out.println("Area: " + csvStateCensus.getAreaInSqKm());
@@ -33,9 +40,12 @@ public class StateCensusAnalyser
                 System.out.println("=============================");
                 count++;
             }
-        }catch (IOException e) {
-            throw new StateCensusAnalyserException(e.getMessage(),StateCensusAnalyserException.ExceptionType.INPUT_OUTPUT_OPERATION_FALIED);
+        } catch (NoSuchFileException e) {
+            throw new StateCensusAnalyserException(e.getMessage(), StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         return count;
     }
 }
