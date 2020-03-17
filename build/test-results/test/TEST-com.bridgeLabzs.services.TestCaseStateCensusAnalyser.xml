@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-03-17T12:05:49" hostname="admin1-LIVA-Z2V" time="0.537">
+<testsuite name="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-17T13:29:32" hostname="admin1-LIVA-Z2V" time="1.089">
   <properties/>
-  <testcase name="givenStateCensusAnalyserFile_WhenWrong_ReturnsException" classname="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" time="0.009"/>
-  <testcase name="givenStateCensusAnalyserFile_WhenMatched_ReturnsException" classname="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" time="0.001"/>
-  <testcase name="givenStateCensusAnalyserFile_WhenTrue_NumberOfRecordShouldMatch" classname="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" time="0.52"/>
+  <testcase name="givenFile_WhenHeaderIncorrect_ReturnCustomiseException" classname="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" time="1.089"/>
   <system-out><![CDATA[Sr no. :1
 State: Uttar Pradesh
 Population: 199812341
