@@ -37,6 +37,26 @@ import java.io.IOException;
                 Assert.assertEquals(StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND, e.exceptionType);
             }
         }
+        @Test
+        public void givenFile_WhenDelimiterIncorrect_ReturnCustomiseException() {
+            final String CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyserProblem/src/test/resources/StateCensusData1.csv";
+            StateCensusAnalyser censusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH);
+            try {
+                censusAnalyser.loadCensusCSVData();
+            } catch (StateCensusAnalyserException e) {
+                Assert.assertEquals(StateCensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, e.exceptionType);
+            }
+        }
+        @Test
+        public void givenFile_WhenHeaderIncorrect_ReturnCustomiseException(){
+            final String CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyser/src/test/resources/StateCensusData.csv";
+            StateCensusAnalyser censusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH);
+            try {
+                censusAnalyser.loadCensusCSVData();
+            } catch (StateCensusAnalyserException e) {
+                Assert.assertEquals(StateCensusAnalyserException.ExceptionType.DELIMITER_INCORRECT,e.exceptionType);
+            }
+        }
 
 
     }
