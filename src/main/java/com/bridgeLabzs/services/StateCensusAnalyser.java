@@ -1,4 +1,5 @@
 package com.bridgeLabzs.services;
+import com.bridgeLabzs.exception.StateCensusAnalyserException;
 import com.bridgeLabzs.model.CSVStateCensus;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -10,12 +11,10 @@ import java.util.Iterator;
 
 public class StateCensusAnalyser
 {
-    private static final String CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyser/src/test/resources/StateCensusData.csv";
     int count=1;
-    public int loadCensusCSVData() throws IOException
-    {
+    public int loadCensusCSVData(String path) throws StateCensusAnalyserException {
         try (
-                Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH));
+                Reader reader = Files.newBufferedReader(Paths.get(path));
         ) {
             CsvToBean<CSVStateCensus> csvStateCensuses = new CsvToBeanBuilder(reader)
             .withType(CSVStateCensus.class)
@@ -26,14 +25,16 @@ public class StateCensusAnalyser
             while (csvStateCensusIterator.hasNext())
             {
                 CSVStateCensus csvStateCensus = csvStateCensusIterator.next();
+                System.out.println("Sr no. :" +count);
                 System.out.println("State: " + csvStateCensus.getState());
                 System.out.println("Population: " + csvStateCensus.getPopulation());
                 System.out.println("Area: " + csvStateCensus.getAreaInSqKm());
                 System.out.println("Density: " + csvStateCensus.getDensityPerSqKm());
                 System.out.println("=============================");
-                System.out.println("Count :" +count);
                 count++;
             }
+        }catch (IOException e) {
+            throw new StateCensusAnalyserException(e.getMessage(),StateCensusAnalyserException.ExceptionType.INPUT_OUTPUT_OPERATION_FALIED);
         }
         return count;
     }
