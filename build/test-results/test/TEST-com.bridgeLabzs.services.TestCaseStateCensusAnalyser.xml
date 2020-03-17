@@ -1,175 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-17T07:15:52" hostname="admin1-LIVA-Z2V" time="0.579">
+<testsuite name="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-03-17T12:05:49" hostname="admin1-LIVA-Z2V" time="0.537">
   <properties/>
-  <testcase name="givenStateCensusAnalyserFile_WhenTrue_NumberOfRecordShouldMatch" classname="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" time="0.579"/>
-  <system-out><![CDATA[State: Uttar Pradesh
+  <testcase name="givenStateCensusAnalyserFile_WhenWrong_ReturnsException" classname="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" time="0.009"/>
+  <testcase name="givenStateCensusAnalyserFile_WhenMatched_ReturnsException" classname="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" time="0.001"/>
+  <testcase name="givenStateCensusAnalyserFile_WhenTrue_NumberOfRecordShouldMatch" classname="com.bridgeLabzs.services.TestCaseStateCensusAnalyser" time="0.52"/>
+  <system-out><![CDATA[Sr no. :1
+State: Uttar Pradesh
 Population: 199812341
 Area: 240928
 Density: 828
 =============================
-Count :1
+Sr no. :2
 State: Maharashta
 Population: 112372972
 Area: 307713
 Density: 365
 =============================
-Count :2
+Sr no. :3
 State: Bihar
 Population: 103804637
 Area: 94163
 Density: 1102
 =============================
-Count :3
+Sr no. :4
 State: West Bengal
 Population: 91347736
 Area: 88752
 Density: 1029
 =============================
-Count :4
+Sr no. :5
 State: Madhya Pradesh
 Population: 72597565
 Area: 308245
 Density: 236
 =============================
-Count :5
+Sr no. :6
 State: Tamil Nadu
 Population: 72138958
 Area: 130058
 Density: 555
 =============================
-Count :6
+Sr no. :7
 State: Rajasthan
 Population: 68621012
 Area: 342239
 Density: 201
 =============================
-Count :7
+Sr no. :8
 State: Karnataka
 Population: 61130704
 Area: 191791
 Density: 319
 =============================
-Count :8
+Sr no. :9
 State: Gujarat
 Population: 60383628
 Area: 196024
 Density: 308
 =============================
-Count :9
+Sr no. :10
 State: Andhra Pradesh
 Population: 49386799
 Area: 162968
 Density: 303
 =============================
-Count :10
+Sr no. :11
 State: Odisha
 Population: 41947358
 Area: 155707
 Density: 269
 =============================
-Count :11
+Sr no. :12
 State: Telangana
 Population: 35286757
 Area: 114840
 Density: 307
 =============================
-Count :12
+Sr no. :13
 State: Kerala
 Population: 33387677
 Area: 38863
 Density: 859
 =============================
-Count :13
+Sr no. :14
 State: Jharkhand
 Population: 32966238
 Area: 79714
 Density: 414
 =============================
-Count :14
+Sr no. :15
 State: Assam
 Population: 31169272
 Area: 78438
 Density: 397
 =============================
-Count :15
+Sr no. :16
 State: Punjab
 Population: 27704236
 Area: 50362
 Density: 550
 =============================
-Count :16
+Sr no. :17
 State: Chattisgarh
 Population: 25540196
 Area: 135191
 Density: 189
 =============================
-Count :17
+Sr no. :18
 State: Haryana
 Population: 25353081
 Area: 44212
 Density: 573
 =============================
-Count :18
+Sr no. :19
 State: Jammu and Kashmir
 Population: 12548926
 Area: 222236
 Density: 57
 =============================
-Count :19
+Sr no. :20
 State: Uttarakhand
 Population: 10116752
 Area: 53483
 Density: 189
 =============================
-Count :20
+Sr no. :21
 State: Himachal Pradesh
 Population: 6864602
 Area: 55673
 Density: 123
 =============================
-Count :21
+Sr no. :22
 State: Tripura
 Population: 3671032
 Area: 10486
 Density: 350
 =============================
-Count :22
+Sr no. :23
 State: Meghalaya
 Population: 2964007
 Area: 22429
 Density: 132
 =============================
-Count :23
+Sr no. :24
 State: Manipur
 Population: 2721756
 Area: 22327
 Density: 122
 =============================
-Count :24
+Sr no. :25
 State: Nagaland
 Population: 1980602
 Area: 16579
 Density: 119
 =============================
-Count :25
+Sr no. :26
 State: Goa
 Population: 1457723
 Area: 3702
 Density: 394
 =============================
-Count :26
+Sr no. :27
 State: Mizoram
 Population: 1091014
 Area: 21081
 Density: 52
 =============================
-Count :27
+Sr no. :28
 State: Sikkim
 Population: 607688
 Area: 7096
 Density: 86
 =============================
-Count :28
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
