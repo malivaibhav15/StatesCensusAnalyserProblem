@@ -42,10 +42,11 @@ public class StateCensusAnalyser {
             }
         } catch (NoSuchFileException e) {
             throw new StateCensusAnalyserException(e.getMessage(), StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
-        } catch (IOException e) {
+        }catch (RuntimeException e) {
+            throw new StateCensusAnalyserException(e.getMessage(), StateCensusAnalyserException.ExceptionType.DELIMITER_INCORRECT);
+        }  catch (IOException e) {
             e.printStackTrace();
         }
-
         return count;
     }
 }
