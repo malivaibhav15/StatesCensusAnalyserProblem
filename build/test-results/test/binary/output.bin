@@ -1,177 +1,213 @@
+	SrNo : 1
+)State Name : Andaman and Nicobar Islands
+	TIN : 35
+StateCode :AN
+=========================
+	SrNo : 2
+State Name : Andhra Pradesh
+	TIN : 28
+StateCode :AP
+=========================
+	SrNo : 3
+ State Name : Andhra Pradesh New
+	TIN : 37
+StateCode :AD
+=========================
+	SrNo : 4
+State Name : Arunachal Pradesh
+	TIN : 12
+StateCode :AR
+=========================
+	SrNo : 5
+State Name : Assam
+	TIN : 18
+StateCode :AS
+=========================
+	SrNo : 6
+State Name : Bihar
+	TIN : 10
+StateCode :BH
+=========================
+	SrNo : 7
+State Name : Chandigarh
+	TIN : 04
+StateCode :CH
+=========================
+	SrNo : 8
+State Name : Chattisgarh
+	TIN : 22
+StateCode :CT
+=========================
+	SrNo : 9
+$State Name : Dadra and Nagar Haveli
+	TIN : 26
+StateCode :DN
+=========================
 
-Sr no. :1
-State: Uttar Pradesh
-Population: 199812341
-Area: 240928
-Density: 828
-=============================
+SrNo : 10
+State Name : Daman and Diu
+	TIN : 25
+StateCode :DD
+=========================
 
-Sr no. :2
-State: Maharashta
-Population: 112372972
-Area: 307713
-Density: 365
-=============================
+SrNo : 11
+State Name : Delhi
+	TIN : 07
+StateCode :DL
+=========================
 
-Sr no. :3
-State: Bihar
-Population: 103804637
-Area: 94163
-Density: 1102
-=============================
+SrNo : 12
+State Name : Goa
+	TIN : 30
+StateCode :GA
+=========================
 
-Sr no. :4
-State: West Bengal
-Population: 91347736
-Area: 88752
-Density: 1029
-=============================
+SrNo : 13
+State Name : Gujarat
+	TIN : 24
+StateCode :GJ
+=========================
 
-Sr no. :5
-State: Madhya Pradesh
-Population: 72597565
-Area: 308245
-Density: 236
-=============================
+SrNo : 14
+State Name : Haryana
+	TIN : 06
+StateCode :HR
+=========================
 
-Sr no. :6
-State: Tamil Nadu
-Population: 72138958
-Area: 130058
-Density: 555
-=============================
+SrNo : 15
+State Name : Himachal Pradesh
+	TIN : 02
+StateCode :HP
+=========================
 
-Sr no. :7
-State: Rajasthan
-Population: 68621012
-Area: 342239
-Density: 201
-=============================
+SrNo : 16
+State Name : Jammu and Kashmir
+	TIN : 01
+StateCode :JK
+=========================
 
-Sr no. :8
-State: Karnataka
-Population: 61130704
-Area: 191791
-Density: 319
-=============================
+SrNo : 17
+State Name : Jharkhand
+	TIN : 20
+StateCode :JH
+=========================
 
-Sr no. :9
-State: Gujarat
-Population: 60383628
-Area: 196024
-Density: 308
-=============================
-Sr no. :10
-State: Andhra Pradesh
-Population: 49386799
-Area: 162968
-Density: 303
-=============================
-Sr no. :11
-State: Odisha
-Population: 41947358
-Area: 155707
-Density: 269
-=============================
-Sr no. :12
-State: Telangana
-Population: 35286757
-Area: 114840
-Density: 307
-=============================
-Sr no. :13
-State: Kerala
-Population: 33387677
-Area: 38863
-Density: 859
-=============================
-Sr no. :14
-State: Jharkhand
-Population: 32966238
-Area: 79714
-Density: 414
-=============================
-Sr no. :15
-State: Assam
-Population: 31169272
-Area: 78438
-Density: 397
-=============================
-Sr no. :16
-State: Punjab
-Population: 27704236
-Area: 50362
-Density: 550
-=============================
-Sr no. :17
-State: Chattisgarh
-Population: 25540196
-Area: 135191
-Density: 189
-=============================
-Sr no. :18
-State: Haryana
-Population: 25353081
-Area: 44212
-Density: 573
-=============================
-Sr no. :19
-State: Jammu and Kashmir
-Population: 12548926
-Area: 222236
-Density: 57
-=============================
-Sr no. :20
-State: Uttarakhand
-Population: 10116752
-Area: 53483
-Density: 189
-=============================
-Sr no. :21
-State: Himachal Pradesh
-Population: 6864602
-Area: 55673
-Density: 123
-=============================
-Sr no. :22
-State: Tripura
-Population: 3671032
-Area: 10486
-Density: 350
-=============================
-Sr no. :23
-State: Meghalaya
-Population: 2964007
-Area: 22429
-Density: 132
-=============================
-Sr no. :24
-State: Manipur
-Population: 2721756
-Area: 22327
-Density: 122
-=============================
-Sr no. :25
-State: Nagaland
-Population: 1980602
-Area: 16579
-Density: 119
-=============================
-Sr no. :26
-State: Goa
-Population: 1457723
-Area: 3702
-Density: 394
-=============================
-Sr no. :27
-State: Mizoram
-Population: 1091014
-Area: 21081
-Density: 52
-=============================
-Sr no. :28
-State: Sikkim
-Population: 607688
-Area: 7096
-Density: 86
-=============================
+SrNo : 18
+State Name : Karnataka
+	TIN : 29
+StateCode :KA
+=========================
+
+SrNo : 19
+State Name : Kerala
+	TIN : 32
+StateCode :KL
+=========================
+
+SrNo : 20
+!State Name : Lakshadweep Islands
+	TIN : 31
+StateCode :LD
+=========================
+
+SrNo : 21
+State Name : Madhya Pradesh
+	TIN : 23
+StateCode :MP
+=========================
+
+SrNo : 22
+State Name : Maharashtra
+	TIN : 27
+StateCode :MH
+=========================
+
+SrNo : 23
+State Name : Manipur
+	TIN : 14
+StateCode :MN
+=========================
+
+SrNo : 24
+State Name : Meghalaya
+	TIN : 17
+StateCode :ME
+=========================
+
+SrNo : 25
+State Name : Mizoram
+	TIN : 15
+StateCode :MI
+=========================
+
+SrNo : 26
+State Name : Nagaland
+	TIN : 13
+StateCode :NL
+=========================
+
+SrNo : 27
+State Name : Odisha
+	TIN : 21
+StateCode :OR
+=========================
+
+SrNo : 28
+State Name : Pondicherry
+	TIN : 34
+StateCode :PY
+=========================
+
+SrNo : 29
+State Name : Punjab
+	TIN : 03
+StateCode :PB
+=========================
+
+SrNo : 30
+State Name : Rajasthan
+	TIN : 08
+StateCode :RJ
+=========================
+
+SrNo : 31
+State Name : Sikkim
+	TIN : 11
+StateCode :SK
+=========================
+
+SrNo : 32
+State Name : Tamil Nadu
+	TIN : 33
+StateCode :TN
+=========================
+
+SrNo : 33
+State Name : Telangana
+	TIN : 36
+StateCode :TS
+=========================
+
+SrNo : 34
+State Name : Tripura
+	TIN : 16
+StateCode :TR
+=========================
+
+SrNo : 35
+State Name : Uttar Pradesh
+	TIN : 09
+StateCode :UP
+=========================
+
+SrNo : 36
+State Name : Uttarakhand
+	TIN : 05
+StateCode :UT
+=========================
+
+SrNo : 37
+State Name : West Bengal
+	TIN : 19
+StateCode :WB
+=========================
