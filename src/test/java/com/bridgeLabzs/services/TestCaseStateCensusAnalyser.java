@@ -60,11 +60,22 @@ public class TestCaseStateCensusAnalyser {
         }
     }
     @Test
-    public void givenStateCode_WhenProper_ShouldMatchCount() throws IOException {
+    public void givenStateCode_WhenProper_ShouldMatchCount() throws StateCensusAnalyserException {
         String STATE_CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyserProblem/src/test/resources/StateCode.csv";
         CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
         int count = csvStates.countCVSStateCode();
         Assert.assertEquals(37, count);
     }
+    @Test
+    public void givenStateCodeFile_WhenIncorrect_ShouldGiveException()  {
+        String STATE_CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyserProblem/src/test/resources/StatesCode.csv";
+        CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
+        try {
+            csvStates.countCVSStateCode();
+        } catch (StateCensusAnalyserException  e) {
+            Assert.assertEquals(StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND, e.exceptionType);
+        }
+    }
+
 }
 
