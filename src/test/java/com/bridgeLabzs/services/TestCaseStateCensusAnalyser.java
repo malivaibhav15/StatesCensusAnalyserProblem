@@ -77,9 +77,9 @@ public class TestCaseStateCensusAnalyser {
         }
     }
     @Test
-    public void givenStateCodeFile_WhwnIncorrect_ShouldGiveException()
+    public void givenStateCodeFileType_WhenIncorrect_ShouldGiveException()
     {
-        String STATE_CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyserProblem/src/test/resources/StatesCode.txt";
+        String STATE_CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyserProblem/src/test/resources/StateCode.txt";
         CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
         try {
             csvStates.countCVSStateCode();
@@ -88,6 +88,18 @@ public class TestCaseStateCensusAnalyser {
             Assert.assertEquals(StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND, e.exceptionType);
         }
     }
-
+    @Test
+    public void givenStateCodeFile_WithIncorrectDelimeter_ShouldGiveException()
+    {
+        String STATE_CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyserProblem/src/test/resources/StateCode1.csv";
+        CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
+        try {
+            csvStates.countCVSStateCode();
+        }
+        catch (StateCensusAnalyserException e)
+        {
+            Assert.assertEquals(StateCensusAnalyserException.ExceptionType.DELIMITER_INCORRECT, e.exceptionType);
+        }
+    }
 }
 
