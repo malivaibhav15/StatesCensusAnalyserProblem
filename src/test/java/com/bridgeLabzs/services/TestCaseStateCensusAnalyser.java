@@ -18,7 +18,7 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCensusAnalyserFile_WhenMatched_ReturnsException() {
-        final String CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyser/src/resources/StateCensusData.csv";
+        final String CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyser/src/resources/StateensusData.csv";
         StateCensusAnalyser censusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH);
         try {
             censusAnalyser.loadCensusCSVData();
@@ -73,6 +73,18 @@ public class TestCaseStateCensusAnalyser {
         try {
             csvStates.countCVSStateCode();
         } catch (StateCensusAnalyserException  e) {
+            Assert.assertEquals(StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND, e.exceptionType);
+        }
+    }
+    @Test
+    public void givenStateCodeFile_WhwnIncorrect_ShouldGiveException()
+    {
+        String STATE_CSV_FILE_PATH = "/home/admin1/Desktop/JAVA/StateCensusAnalyserProblem/src/test/resources/StatesCode.txt";
+        CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
+        try {
+            csvStates.countCVSStateCode();
+        }catch (StateCensusAnalyserException e)
+        {
             Assert.assertEquals(StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND, e.exceptionType);
         }
     }
