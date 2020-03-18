@@ -1,5 +1,6 @@
 package com.bridgeLabzs.services;
 
+import com.bridgeLabzs.exception.StateCensusAnalyserException;
 import com.bridgeLabzs.model.CSVStateCode;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
@@ -19,7 +20,7 @@ public class CSVStates {
         STATE_CSV_FILE_PATH = path;
     }
 
-    public int countCVSStateCode() throws IOException {
+    public int countCVSStateCode() throws StateCensusAnalyserException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(STATE_CSV_FILE_PATH));
                 CSVReader csvReader = new CSVReader(reader)
@@ -39,6 +40,8 @@ public class CSVStates {
                 System.out.println("=========================");
                 count++;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return count;
     }
