@@ -1,7 +1,6 @@
 package com.bridgeLabzs.services;
 
 import com.bridgeLabzs.exception.StateCensusAnalyserException;
-import com.bridgeLabzs.model.CSVStateCensus;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
@@ -12,39 +11,37 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.util.Iterator;
 
-public class StateCensusAnalyser {
+public class StateCensusAnalyser<E> {
     public static String CSV_FILE_PATH;
-    int count = 1;
+    private final Class<E> csvClass;
+    int count = 0;
 
-    public StateCensusAnalyser(String filePath) {
+    public StateCensusAnalyser(String filePath, Class<E> csvClass) {
         CSV_FILE_PATH = filePath;
+        this.csvClass = csvClass;
     }
 
-    public int loadCensusCSVData() throws StateCensusAnalyserException {
+    public <E> int loadCensusCSVData() throws StateCensusAnalyserException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH))
         ) {
-            CsvToBean<CSVStateCensus> csvToBean = new CsvToBeanBuilder(reader)
-                    .withType(CSVStateCensus.class)
+            CsvToBean<E> csvToBean = new CsvToBeanBuilder(reader)
+                    .withType(csvClass)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
 
-            Iterator<CSVStateCensus> csvUserIterator = csvToBean.iterator();
+            Iterator<E> csvUserIterator = csvToBean.iterator();
             while (csvUserIterator.hasNext()) {
-                CSVStateCensus csvStateCensus = csvUserIterator.next();
-                System.out.println("Sr no. :" + count);
-                System.out.println("State: " + csvStateCensus.getState());
-                System.out.println("Population: " + csvStateCensus.getPopulation());
-                System.out.println("Area: " + csvStateCensus.getAreaInSqKm());
-                System.out.println("Density: " + csvStateCensus.getDensityPerSqKm());
-                System.out.println("=============================");
+                csvUserIterator.next();
                 count++;
             }
         } catch (NoSuchFileException e) {
-            throw new StateCensusAnalyserException(e.getMessage(), StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
-        }catch (RuntimeException e) {
-            throw new StateCensusAnalyserException(e.getMessage(), StateCensusAnalyserException.ExceptionType.DELIMITER_INCORRECT);
-        }  catch (IOException e) {
+            throw new StateCensusAnalyserException(e.getMessage(),
+                    StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
+        } catch (RuntimeException e) {
+            throw new StateCensusAnalyserException(e.getMessage(),
+                    StateCensusAnalyserException.ExceptionType.DELIMITER_INCORRECT);
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return count;
