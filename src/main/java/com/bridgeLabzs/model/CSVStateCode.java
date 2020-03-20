@@ -3,19 +3,28 @@ package com.bridgeLabzs.model;
 import com.opencsv.bean.CsvBindByName;
 
     public class CSVStateCode {
-    @CsvBindByName(column = "SrNo")
+    @CsvBindByName(column = "SrNo", required = true)
     private String SrNo;
-    @CsvBindByName(column = "StateName")
+    @CsvBindByName(column = "StateName", required = true)
     private String StateName;
-    @CsvBindByName(column = "TIN")
+    @CsvBindByName(column = "TIN", required = true)
     private String TIN;
-    @CsvBindByName(column = "StateCode")
+    @CsvBindByName(column = "StateCode", required = true)
     private String StateCode;
 
-    public String getSrNo() {
-        return SrNo;
+
+    public CSVStateCode() {
+    }
+    public CSVStateCode(String srNo, String stateName, String TIN, String stateCode) {
+        SrNo = srNo;
+        StateName = stateName;
+        this.TIN = TIN;
+        StateCode = stateCode;
     }
 
+    public String getSrNo()
+    { return SrNo;
+    }
     public void setSrNo(String srNo) {
         SrNo = srNo;
     }
