@@ -3,15 +3,24 @@ package com.bridgeLabzs.model;
 import com.opencsv.bean.CsvBindByName;
 
 public class CSVStateCensus {
-    @CsvBindByName(column = "State")
+    @CsvBindByName(column = "State" , required = true)
     private String State;
-    @CsvBindByName(column = "Population")
+    @CsvBindByName(column = "Population" , required = true)
     private String Population;
-    @CsvBindByName(column = "AreaInSqKm")
+    @CsvBindByName(column = "AreaInSqKm" , required = true)
     private String AreaInSqKm;
-    @CsvBindByName(column = "DensityPerSqKm")
+    @CsvBindByName(column = "DensityPerSqKm" , required = true)
     private String DensityPerSqKm;
 
+    public CSVStateCensus() {
+
+    }
+    public CSVStateCensus(String state, String population, String areaInSqKm, String densityPerSqKm) {
+        State = state;
+        Population = population;
+        AreaInSqKm = areaInSqKm;
+        DensityPerSqKm = densityPerSqKm;
+    }
     public String getState() {
         return State;
     }
