@@ -23,6 +23,7 @@ public class StateCensusAnalyser<E> {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH))
         ) {
+            OpenCSVBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
             Iterator cvsUserIterator = new OpenCSVBuilder().getIterator(reader, csvClass);
 
             while (cvsUserIterator.hasNext()) {
