@@ -2,6 +2,7 @@ package com.bridgeLabzs.services;
 
 import com.bridgeLabzs.exception.CSVBuilderException;
 import com.bridgeLabzs.model.CSVStateCensus;
+import com.bridgeLabzs.model.CSVStateCode;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -61,18 +62,18 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCode_WhenProper_ShouldMatchCount() throws CSVBuilderException {
-        String STATE_CSV_FILE_PATH = "src/test/resources/StateCode.csv";
-        CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
-        int count = csvStates.countCVSStateCode();
+        String CSV_FILE_PATH = "src/test/resources/StateCode.csv";
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
+        int count = stateCensusAnalyser.loadCensusCSVData();
         Assert.assertEquals(37, count);
     }
 
     @Test
     public void givenStateCodeFile_WhenIncorrect_ShouldGiveException() {
-        String STATE_CSV_FILE_PATH = "src/test/resources/StateCode.csv";
-        CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
+        String CSV_FILE_PATH = "src/test/resources/StateCode.csv";
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         try {
-            csvStates.countCVSStateCode();
+            stateCensusAnalyser.loadCensusCSVData();
         } catch (CSVBuilderException e) {
             Assert.assertEquals(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, e.exceptionType);
         }
@@ -80,10 +81,10 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCodeFileType_WhenIncorrect_ShouldGiveException() {
-        String STATE_CSV_FILE_PATH = "src/test/resources/StateCode.txt";
-        CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
+        String CSV_FILE_PATH = "src/test/resources/StateCode.txt";
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         try {
-            csvStates.countCVSStateCode();
+            stateCensusAnalyser.loadCensusCSVData();
         } catch (CSVBuilderException e) {
             Assert.assertEquals(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, e.exceptionType);
         }
@@ -91,10 +92,10 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCodeFile_WithIncorrectDelimeter_ShouldGiveException() {
-        String STATE_CSV_FILE_PATH = "src/test/resources/StateCode1.csv";
-        CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
+        String CSV_FILE_PATH = "src/test/resources/StateCode1.csv";
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         try {
-            csvStates.countCVSStateCode();
+            stateCensusAnalyser.loadCensusCSVData();
         } catch (CSVBuilderException e) {
             Assert.assertEquals(CSVBuilderException.ExceptionType.DELIMITER_INCORRECT, e.exceptionType);
         }
@@ -102,10 +103,10 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCodeFile_WithIncorrectHeaderName_ShouldGiveException() {
-        String STATE_CSV_FILE_PATH = "src/test/resources/StateCode1.csv";
-        CSVStates csvStates = new CSVStates(STATE_CSV_FILE_PATH);
+        String CSV_FILE_PATH = "src/test/resources/StateCode1.csv";
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         try {
-            csvStates.countCVSStateCode();
+            stateCensusAnalyser.loadCensusCSVData();
         } catch (CSVBuilderException e) {
             Assert.assertEquals(CSVBuilderException.ExceptionType.DELIMITER_INCORRECT, e.exceptionType);
         }
