@@ -1,13 +1,13 @@
 package com.bridgeLabzs.services;
 
-import com.bridgeLabzs.exception.StateCensusAnalyserException;
+import com.bridgeLabzs.exception.CSVBuilderException;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
-import java.util.Iterator;
+import java.util.List;
 
 public class StateCensusAnalyser<E> {
     public static String CSV_FILE_PATH;
@@ -19,26 +19,22 @@ public class StateCensusAnalyser<E> {
         this.csvClass = csvClass;
     }
 
-    public int loadCensusCSVData() throws StateCensusAnalyserException {
+    public int loadCensusCSVData() throws CSVBuilderException {
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH))
         ) {
             OpenCSVBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
-            Iterator cvsUserIterator = new OpenCSVBuilder().getIterator(reader, csvClass);
-
-            while (cvsUserIterator.hasNext()) {
-                cvsUserIterator.next();
-                count++;
-            }
+            List csvUserList = csvBuilder().getList(reader, csvClass);
+            return csvUserList.size();
         } catch (NoSuchFileException e) {
-            throw new StateCensusAnalyserException(e.getMessage(),
-                    StateCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
+            throw new CSVBuilderException(e.getMessage(),
+                    CSVBuilderException.ExceptionType.FILE_NOT_FOUND);
         } catch (RuntimeException e) {
-            throw new StateCensusAnalyserException(e.getMessage(),
-                    StateCensusAnalyserException.ExceptionType.DELIMITER_INCORRECT);
+            throw new CSVBuilderException(e.getMessage(),
+                    CSVBuilderException.ExceptionType.DELIMITER_INCORRECT);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return count;
+        return 0;
     }
 }
