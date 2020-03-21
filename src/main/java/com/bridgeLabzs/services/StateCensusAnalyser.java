@@ -24,7 +24,7 @@ public class StateCensusAnalyser<E> {
                 Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH))
         ) {
             OpenCSVBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
-            List csvUserList = csvBuilder().getList(reader, csvClass);
+            List<E> csvUserList = csvBuilder.getList(reader, csvClass);
             return csvUserList.size();
         } catch (NoSuchFileException e) {
             throw new CSVBuilderException(e.getMessage(),
