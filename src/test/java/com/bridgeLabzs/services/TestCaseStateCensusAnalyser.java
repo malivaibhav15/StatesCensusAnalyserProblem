@@ -63,7 +63,7 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCode_WhenProper_ShouldMatchCount() throws CSVBuilderException {
-        String CSV_FILE_PATH = "src/test/resources/StateCode.csv";
+        final String CSV_FILE_PATH = "src/test/resources/StateCode.csv";
         StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         int count = stateCensusAnalyser.loadCensusCSVData();
         Assert.assertEquals(37, count);
@@ -71,7 +71,7 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCodeFile_WhenIncorrect_ShouldGiveException() {
-        String CSV_FILE_PATH = "src/test/resources/StateCode.csv";
+        final String CSV_FILE_PATH = "src/test/resources/StateCode.csv";
         StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         try {
             stateCensusAnalyser.loadCensusCSVData();
@@ -82,7 +82,7 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCodeFileType_WhenIncorrect_ShouldGiveException() {
-        String CSV_FILE_PATH = "src/test/resources/StateCode.txt";
+        final String CSV_FILE_PATH = "src/test/resources/StateCode.txt";
         StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         try {
             stateCensusAnalyser.loadCensusCSVData();
@@ -93,7 +93,7 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCodeFile_WithIncorrectDelimeter_ShouldGiveException() {
-        String CSV_FILE_PATH = "src/test/resources/StateCode1.csv";
+        final String CSV_FILE_PATH = "src/test/resources/StateCode1.csv";
         StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         try {
             stateCensusAnalyser.loadCensusCSVData();
@@ -104,7 +104,7 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCodeFile_WithIncorrectHeaderName_ShouldGiveException() {
-        String CSV_FILE_PATH = "src/test/resources/StateCode1.csv";
+        final String CSV_FILE_PATH = "src/test/resources/StateCode1.csv";
         StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
         try {
             stateCensusAnalyser.loadCensusCSVData();
@@ -112,6 +112,7 @@ public class TestCaseStateCensusAnalyser {
             Assert.assertEquals(CSVBuilderException.ExceptionType.DELIMITER_INCORRECT, e.exceptionType);
         }
     }
+
     @Test
     public void givenCensusData_WhenSorted_ShouldReturnSortedList() throws CSVBuilderException {
         final String CSV_FILE_PATH = "src/test/resources/StateCensusData.csv";
