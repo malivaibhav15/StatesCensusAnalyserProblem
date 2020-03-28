@@ -125,15 +125,11 @@ public class TestCaseStateCensusAnalyser {
 
     @Test
     public void givenStateCodeData_WhenSorted_ShouldReturnSortedList() throws CSVBuilderException {
-        try {
-            final String CSV_FILE_PATH = "src/test/resources/StateCode.csv";
-            StateCensusAnalyser stateCensusAnalyzer = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCensus.class);
-            stateCensusAnalyzer.loadCensusCSVData();
-            String SortedData = stateCensusAnalyzer.getSortedStateCodeData();
-            CSVStateCensus[] StateCodes = new Gson().fromJson(SortedData, CSVStateCensus[].class);
-            Assert.assertEquals("AD", StateCodes[0].getState());
-        } catch (CSVBuilderException e) {
-            e.printStackTrace();
-        }
+        final String CSV_FILE_PATH = "src/test/resources/StateCode.csv";
+        StateCensusAnalyser stateCensusAnalyzer = new StateCensusAnalyser(CSV_FILE_PATH, CSVStateCode.class);
+        stateCensusAnalyzer.loadCensusCSVData();
+        String SortedData = stateCensusAnalyzer.getSortedStateCodeData();
+        CSVStateCode[] StateCodes = new Gson().fromJson(SortedData, CSVStateCode[].class);
+        Assert.assertEquals("AD", StateCodes[0].getStateCode());
     }
 }
