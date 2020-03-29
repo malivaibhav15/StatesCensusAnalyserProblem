@@ -5,54 +5,32 @@ import com.opencsv.bean.CsvBindByName;
 public class CSVStateCode {
 
     @CsvBindByName(column = "StateCode", required = true)
-    public String StateCode;
+    public int StateCode;
     @CsvBindByName(column = "SrNo", required = true)
-    private String SrNo;
+    public int SrNo;
     @CsvBindByName(column = "StateName", required = true)
-    private String StateName;
+    public String StateName;
     @CsvBindByName(column = "TIN", required = true)
-    private String TIN;
+    public int TIN;
 
 
     public CSVStateCode() {
     }
 
-    public CSVStateCode(String srNo, String stateName, String TIN, String stateCode) {
+    public CSVStateCode(int srNo, String stateName, int TIN, int stateCode) {
         SrNo = srNo;
         StateName = stateName;
         this.TIN = TIN;
         StateCode = stateCode;
     }
 
-    public String getSrNo() {
-        return SrNo;
-    }
-
-    public void setSrNo(String srNo) {
-        SrNo = srNo;
-    }
-
-    public String getStateName() {
-        return StateName;
-    }
-
-    public void setStateName(String stateName) {
-        StateName = stateName;
-    }
-
-    public String getTIN() {
-        return TIN;
-    }
-
-    public void setTIN(String TIN) {
-        this.TIN = TIN;
-    }
-
-    public String getStateCode() {
-        return StateCode;
-    }
-
-    public void setStateCode(String stateCode) {
-        StateCode = stateCode;
+    @Override
+    public String toString() {
+        return "CSVStateCode{" +
+                "StateCode=" + StateCode +
+                ", SrNo=" + SrNo +
+                ", StateName='" + StateName + '\'' +
+                ", TIN=" + TIN +
+                '}';
     }
 }
