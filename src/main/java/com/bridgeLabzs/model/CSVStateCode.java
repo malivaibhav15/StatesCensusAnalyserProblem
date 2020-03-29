@@ -2,19 +2,21 @@ package com.bridgeLabzs.model;
 
 import com.opencsv.bean.CsvBindByName;
 
-    public class CSVStateCode {
+public class CSVStateCode {
+
+    @CsvBindByName(column = "StateCode", required = true)
+    public String StateCode;
     @CsvBindByName(column = "SrNo", required = true)
     private String SrNo;
     @CsvBindByName(column = "StateName", required = true)
     private String StateName;
     @CsvBindByName(column = "TIN", required = true)
     private String TIN;
-    @CsvBindByName(column = "StateCode", required = true)
-    private String StateCode;
 
 
     public CSVStateCode() {
     }
+
     public CSVStateCode(String srNo, String stateName, String TIN, String stateCode) {
         SrNo = srNo;
         StateName = stateName;
@@ -22,9 +24,10 @@ import com.opencsv.bean.CsvBindByName;
         StateCode = stateCode;
     }
 
-    public String getSrNo()
-    { return SrNo;
+    public String getSrNo() {
+        return SrNo;
     }
+
     public void setSrNo(String srNo) {
         SrNo = srNo;
     }
