@@ -1,6 +1,7 @@
 package com.bridgeLabzs.services;
 
 import com.bridgeLabzs.exception.CSVBuilderException;
+import com.bridgeLabzs.exception.StatesCensusAnalyserException;
 import com.bridgeLabzs.model.CSVStateCensus;
 import com.bridgeLabzs.model.CSVStateCode;
 import com.google.gson.Gson;
@@ -14,89 +15,93 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class StateCensusAnalyser<E> {
-    public static String CSV_FILE_PATH;
-    List<CSVStateCensus> csvStatesCensusList = null;
-    List<CSVStateCode> csvStatesPojoClassList = null;
-    Map<String, CSVStateCensus> csvStatesCensusMap = null;
-    Map<String, CSVStateCode> csvStatesPojoClassMap = null;
+    List<CensusDAO> list = null;
+    Map<String, CensusDAO> map = null;
 
     public StateCensusAnalyser() {
-        this.csvStatesCensusMap = new HashMap<>();
-        this.csvStatesPojoClassMap = new HashMap<>();
+        this.map = new HashMap<>();
+        this.list = new ArrayList<>();
     }
 
-    //METHOD TO LOAD RECORDS
-    public int loadCensusCSVData(String path) throws CSVBuilderException {
+    //    METHOD TO LOAD RECORDS OF CSV FILE
+    public int loadRecords(String path) throws StatesCensusAnalyserException {
+        int numberOfRecords = 0;
+        String extension = path.substring(path.lastIndexOf(".") + 1);
+        if (!extension.equals("csv")) {
+            throw new StatesCensusAnalyserException("Incorrect file type", StatesCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
+        }
         try (Reader reader = Files.newBufferedReader(Paths.get(path))) {
             OpenCSVBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
             Iterator<CSVStateCensus> csvStatesCensusIterator = csvBuilder.getIterator(reader, CSVStateCensus.class);
             while (csvStatesCensusIterator.hasNext()) {
-                CSVStateCensus csvStatesCensus = csvStatesCensusIterator.next();
-                this.csvStatesCensusMap.put(CSVStateCensus.State, csvStatesCensus);
-                csvStatesCensusList = csvStatesCensusMap.values().stream().collect(Collectors.toList());
+                CensusDAO censusDAO = new CensusDAO(csvStatesCensusIterator.next());
+                this.map.put(censusDAO.state, censusDAO);
+                list = map.values().stream().collect(Collectors.toList());
             }
-            int numberOfRecords = csvStatesCensusMap.size();
+            numberOfRecords = map.size();
         } catch (NoSuchFileException e) {
-            throw new CSVBuilderException(e.getMessage(),
-                    CSVBuilderException.ExceptionType.FILE_NOT_FOUND);
-        } catch (RuntimeException  e) {
-            throw new CSVBuilderException(e.getMessage(),
-                    CSVBuilderException.ExceptionType.DELIMITER_INCORRECT);
+            throw new StatesCensusAnalyserException("Give proper file name and path", StatesCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
+        } catch (RuntimeException e) {
+            throw new StatesCensusAnalyserException("Check delimiters and headers", StatesCensusAnalyserException.ExceptionType.DELIMITER_AND_HEADER_INCORRECT);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (CSVBuilderException e) {
+            e.printStackTrace();
         }
-        return 0;
+        return numberOfRecords;
     }
 
-    public int loadData(String path) throws CSVBuilderException {
+    //    METHOD TO LOAD RECORDS OF STATE CODE
+    public int loadData(String path) throws StatesCensusAnalyserException {
+        int numberOfRecords = 0;
+        String extension = path.substring(path.lastIndexOf(".") + 1);
+        if (!extension.equals("csv")) {
+            throw new StatesCensusAnalyserException("Incorrect file type", StatesCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
+        }
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(path))
         ) {
             OpenCSVBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
-            Iterator<CSVStateCode> csvStatesCensusIterator = csvBuilder.getIterator(reader, CSVStateCensus.class);
-            while (csvStatesCensusIterator.hasNext()) {
-                CSVStateCode csvStatesPojoClass = csvStatesCensusIterator.next();
-                this.csvStatesPojoClassMap.put(CSVStateCode.StateCode, csvStatesPojoClass);
-                csvStatesPojoClassList = csvStatesPojoClassMap.values().stream().collect(Collectors.toList());
+            Iterator<CSVStateCode> csvStatesPojoClassIterator = csvBuilder.getIterator(reader, CSVStateCode.class);
+            while (csvStatesPojoClassIterator.hasNext()) {
+                CSVStateCode csvStatesPojoClass = csvStatesPojoClassIterator.next();
+                CensusDAO censusDTO = map.get(csvStatesPojoClass.getStateName());
+                if (censusDTO == null)
+                    continue;
+                censusDTO.stateCode = csvStatesPojoClass.StateCode;
             }
-            int numberOfRecords = csvStatesPojoClassMap.size();
+            numberOfRecords = map.size();
         } catch (NoSuchFileException e) {
-            throw new CSVBuilderException("Give proper file name and path", CSVBuilderException.ExceptionType.FILE_NOT_FOUND);
+            throw new StatesCensusAnalyserException("Give proper file name and path", StatesCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
         } catch (RuntimeException e) {
-            throw new CSVBuilderException("Check delimiters and headers", CSVBuilderException.ExceptionType.DELIMITER_INCORRECT);
+            throw new StatesCensusAnalyserException("Check delimiters and headers", StatesCensusAnalyserException.ExceptionType.DELIMITER_AND_HEADER_INCORRECT);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (CSVBuilderException e) {
+            e.printStackTrace();
         }
-        return 0;
+        return numberOfRecords;
     }
 
-    public String SortedCensusData() throws CSVBuilderException {
-        if (csvStatesCensusList == null || csvStatesCensusList.size() == 0) {
-            throw new CSVBuilderException("No census data", CSVBuilderException.ExceptionType.NO_CENSUS_DATA);
+    public String SortedCensusData() throws StatesCensusAnalyserException {
+        if (list == null || list.size() == 0) {
+            throw new StatesCensusAnalyserException("No census data", StatesCensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
-        Comparator<CSVStateCensus> comparator = Comparator.comparing(csvStatesCensus -> csvStatesCensus.State);
-        this.sortData(comparator, csvStatesCensusList);
-        String sortedStateCensusJson = new Gson().toJson(csvStatesCensusList);
+        Comparator<CensusDAO> comparator = Comparator.comparing(csvStatesCensus -> CSVStateCensus.State);
+        this.sortData(comparator);
+        String sortedStateCensusJson = new Gson().toJson(list);
         return sortedStateCensusJson;
     }
 
-    public String SortedStateCodeData() throws CSVBuilderException {
-        if (csvStatesPojoClassList == null || csvStatesPojoClassList.size() == 0) {
-            throw new CSVBuilderException("No census data", CSVBuilderException.ExceptionType.NO_CENSUS_DATA);
-        }
-        Comparator<CSVStateCode> comparator = Comparator.comparing(csvStatesPojoClass -> csvStatesPojoClass.StateCode);
-        this.sortData(comparator, csvStatesPojoClassList);
-        String sortedStateCodeJson = new Gson().toJson(csvStatesPojoClassList);
-        return sortedStateCodeJson;
-    }
-
-    private <E> void sortData(Comparator<E> csvComparator, List<E> list) {
-        for (int i = 0; i < list.size() - 1; i++) {
-            for (int j = 0; j < list.size() - i - 1; j++) {
-                E census1 = list.get(j);
-                E census2 = list.get(j + 1);
-                list.set(j, census2);
-                list.set(j + 1, census1);
+    private void sortData(Comparator<CensusDAO> csvComparator) {
+        {
+            for (int i = 0; i < list.size() - 1; i++) {
+                for (int j = 0; j < list.size() - i - 1; j++) {
+                    CensusDAO census1 = list.get(j);
+                    CensusDAO census2 = list.get(j + 1);
+                    list.set(j, census2);
+                    list.set(j + 1, census1);
+                }
             }
         }
     }
