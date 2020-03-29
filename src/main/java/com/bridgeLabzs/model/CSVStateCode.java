@@ -5,7 +5,7 @@ import com.opencsv.bean.CsvBindByName;
 public class CSVStateCode {
 
     @CsvBindByName(column = "StateCode", required = true)
-    public int StateCode;
+    public String StateCode;
     @CsvBindByName(column = "SrNo", required = true)
     public int SrNo;
     @CsvBindByName(column = "StateName", required = true)
@@ -17,7 +17,7 @@ public class CSVStateCode {
     public CSVStateCode() {
     }
 
-    public CSVStateCode(int srNo, String stateName, int TIN, int stateCode) {
+    public CSVStateCode(int srNo, String stateName, int TIN, String stateCode) {
         SrNo = srNo;
         StateName = stateName;
         this.TIN = TIN;
