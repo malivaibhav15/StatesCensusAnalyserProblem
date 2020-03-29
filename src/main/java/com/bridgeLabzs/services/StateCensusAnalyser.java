@@ -105,6 +105,16 @@ public class StateCensusAnalyser<E> {
         String sortedStateCensusJson = new Gson().toJson(list);
         return sortedStateCensusJson;
     }
+    public String getDensityWiseSortedCensusData() throws StatesCensusAnalyserException {
+        if (list == null || list.size() == 0) {
+            throw new StatesCensusAnalyserException( "No census data", StatesCensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.DensityPerSqkm);
+        this.sortData(censusComparator);
+        Collections.reverse(list);
+        String sortedStateCensusJson = new Gson().toJson(list);
+        return sortedStateCensusJson;
+    }
         private void sortData(Comparator<CensusDAO> csvComparator) {
         {
             for (int i = 0; i < list.size() - 1; i++) {
