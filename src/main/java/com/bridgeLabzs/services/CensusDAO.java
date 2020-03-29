@@ -15,6 +15,5 @@ public class CensusDAO {
         this.area = csvStatesCensus.AreaInSqKm;
         this.density = csvStatesCensus.DensityPerSqKm;
     }
-
 }
 
