@@ -1,6 +1,6 @@
 package com.bridgeLabzs.exception;
 
-public class  CSVBuilderException extends Exception {
+public class CSVBuilderException extends Exception {
     public CSVBuilderException.ExceptionType exceptionType;
 
     public CSVBuilderException(String message, CSVBuilderException.ExceptionType exceptionType) {
@@ -9,9 +9,7 @@ public class  CSVBuilderException extends Exception {
     }
 
     public enum ExceptionType {
-        FILE_NOT_FOUND,
-        DELIMITER_INCORRECT,
-        NO_CENSUS_DATA
+        UNABLE_TO_PARSE
     }
 
 }
