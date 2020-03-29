@@ -84,6 +84,7 @@ public class StateCensusAnalyser<E> {
         return numberOfRecords;
     }
 
+    //METHOD TO SORT STATE CENSUS DATA
     public String SortedStateCensusData() throws StatesCensusAnalyserException {
         if (list == null || list.size() == 0) {
             throw new StatesCensusAnalyserException("No census data", StatesCensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
@@ -105,9 +106,11 @@ public class StateCensusAnalyser<E> {
         String sortedStateCensusJson = new Gson().toJson(list);
         return sortedStateCensusJson;
     }
+
+    //METHOD TO SORT DATA DENSITYWISE
     public String getDensityWiseSortedCensusData() throws StatesCensusAnalyserException {
         if (list == null || list.size() == 0) {
-            throw new StatesCensusAnalyserException( "No census data", StatesCensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+            throw new StatesCensusAnalyserException("No census data", StatesCensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.DensityPerSqkm);
         this.sortData(censusComparator);
@@ -115,7 +118,22 @@ public class StateCensusAnalyser<E> {
         String sortedStateCensusJson = new Gson().toJson(list);
         return sortedStateCensusJson;
     }
-        private void sortData(Comparator<CensusDAO> csvComparator) {
+
+    //METHOD TO SORT STATE CENSUS DATA BY AREA
+    public String getAreaWiseSortedCensusData() throws StatesCensusAnalyserException {
+        if (list == null || list.size() == 0) {
+            throw new StatesCensusAnalyserException("No census data", StatesCensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDAO> censusComparator = Comparator.comparing(censusDAO -> censusDAO.AreaInSqKm);
+        this.sortData(censusComparator);
+        Collections.reverse(list);
+        String sortedStateCensusJson = new Gson().toJson(list);
+        return sortedStateCensusJson;
+
+    }
+
+    //METHOD TO SORT DATA
+    private void sortData(Comparator<CensusDAO> csvComparator) {
         {
             for (int i = 0; i < list.size() - 1; i++) {
                 for (int j = 0; j < list.size() - i - 1; j++) {
