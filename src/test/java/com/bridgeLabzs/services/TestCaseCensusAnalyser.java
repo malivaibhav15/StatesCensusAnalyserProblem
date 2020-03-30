@@ -1,17 +1,20 @@
 package com.bridgeLabzs.services;
 
+import com.bridgeLabzs.DAO.CensusDAO;
 import com.bridgeLabzs.exception.StatesCensusAnalyserException;
 import com.bridgeLabzs.model.CSVStateCensus;
 import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class TestCaseStateCensusAnalyser {
 
     StateCensusAnalyser stateCensusAnalyzer = new StateCensusAnalyser();
 
     @Test
-    public void givenNumberOfRecords_WhenMatched_ShouldReturnTrue() {
+    public void givenNumberOfRecords_WhenMatched_ShouldReturnTrue() throws IOException {
         final String CSV_FILE_PATH = "src/test/resources/StateCensusData.csv";
         try {
             int numberOfRecords = stateCensusAnalyzer.loadRecords(CSV_FILE_PATH);
@@ -120,7 +123,7 @@ public class TestCaseStateCensusAnalyser {
             stateCensusAnalyzer.loadData(CSV_FILE_PATH);
             String SortedData = stateCensusAnalyzer.SortedStateCensusData();
             CensusDAO[] censusCSV = new Gson().fromJson(SortedData, CensusDAO[].class);
-            Assert.assertEquals("Andhra Pradesh", censusCSV[0].State);
+            Assert.assertEquals("Andhra Pradesh", CSVStateCensus.State);
         } catch (StatesCensusAnalyserException e) {
             e.getStackTrace();
         }
@@ -176,5 +179,12 @@ public class TestCaseStateCensusAnalyser {
         } catch (StatesCensusAnalyserException e) {
             e.getStackTrace();
         }
+    }
+
+    @Test
+    public void givenUSCensusAnalyser_WhenCorrectNumberOfRecord_ShouldMatch() throws StatesCensusAnalyserException {
+        final String CSV_FILE_PATH = "src/test/resources/USCensusData.csv";
+        int count = stateCensusAnalyzer.loadUSCensusData(CSV_FILE_PATH);
+        Assert.assertEquals(51, count);
     }
 }
