@@ -9,9 +9,9 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class TestCaseStateCensusAnalyser {
+public class TestCaseCensusAnalyser {
 
-    StateCensusAnalyser stateCensusAnalyzer = new StateCensusAnalyser();
+    CensusAnalyser stateCensusAnalyzer = new CensusAnalyser();
 
     @Test
     public void givenNumberOfRecords_WhenMatched_ShouldReturnTrue() throws IOException {
