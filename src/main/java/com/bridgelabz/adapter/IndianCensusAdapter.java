@@ -1,11 +1,11 @@
-package com.bridgeLabzs.adapter;
+package com.bridgelabz.adapter;
 
-import com.bridgeLabzs.DAO.CensusDAO;
-import com.bridgeLabzs.dto.CSVStatesCensus;
-import com.bridgeLabzs.dto.CSVStatesPojoClass;
-import com.bridgeLabzs.exception.StatesCensusAnalyserException;
-import com.bridgeLabzs.services.CSVBuilderFactory;
-import com.bridgeLabzs.services.OpenCSVBuilder;
+import com.bridgelabz.dao.CensusDAO;
+import com.bridgelabz.dto.CSVStatesCensus;
+import com.bridgelabz.dto.CSVStatesPojoClass;
+import com.bridgelabz.exception.StatesCensusAnalyserException;
+import com.bridgelabz.service.CSVBuilderFactory;
+import com.bridgelabz.service.OpenCSV;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.StreamSupport;
 
-public class IndianCensusAdapter extends CensusAdapter {
+public class IndianCensusAdapter  extends CensusAdapter{
     @Override
     public Map<String, CensusDAO> loadCensusData(String... csvFilePath) throws StatesCensusAnalyserException {
         Map<String, CensusDAO> censusDAOMap = super.loadCensusData(CSVStatesCensus.class, csvFilePath[0]);
@@ -31,7 +31,7 @@ public class IndianCensusAdapter extends CensusAdapter {
             throw new StatesCensusAnalyserException("Incorrect file type", StatesCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
         }
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
-            OpenCSVBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
+            OpenCSV csvBuilder = CSVBuilderFactory.getCensusData();
             Iterator<CSVStatesPojoClass> stateCodeIterator = csvBuilder.getIterator(reader, CSVStatesPojoClass.class);
             Iterable<CSVStatesPojoClass> stateCodes = () -> stateCodeIterator;
             StreamSupport.stream(stateCodes.spliterator(), false)
@@ -40,7 +40,7 @@ public class IndianCensusAdapter extends CensusAdapter {
         } catch (RuntimeException e) {
             throw new StatesCensusAnalyserException("Incorrect delimiter or header in file", StatesCensusAnalyserException.ExceptionType.DELIMITER_AND_HEADER_INCORRECT);
         } catch (FileNotFoundException e) {
-            throw new StatesCensusAnalyserException("No such file", StatesCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
+            throw new StatesCensusAnalyserException( "No such file", StatesCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
         } catch (IOException e) {
             e.getStackTrace();
         }

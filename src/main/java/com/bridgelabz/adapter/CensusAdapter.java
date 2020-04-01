@@ -1,11 +1,11 @@
-package com.bridgeLabzs.adapter;
+package com.bridgelabz.adapter;
 
-import com.bridgeLabzs.DAO.CensusDAO;
-import com.bridgeLabzs.dto.CSVStatesCensus;
-import com.bridgeLabzs.dto.CSVUSCensus;
-import com.bridgeLabzs.exception.StatesCensusAnalyserException;
-import com.bridgeLabzs.services.CSVBuilderFactory;
-import com.bridgeLabzs.services.OpenCSVBuilder;
+import com.bridgelabz.dao.CensusDAO;
+import com.bridgelabz.dto.CSVStatesCensus;
+import com.bridgelabz.dto.CSVUSCensus;
+import com.bridgelabz.exception.StatesCensusAnalyserException;
+import com.bridgelabz.service.CSVBuilderFactory;
+import com.bridgelabz.service.OpenCSV;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,13 +27,13 @@ public abstract class CensusAdapter {
             throw new StatesCensusAnalyserException("Incorrect file type", StatesCensusAnalyserException.ExceptionType.FILE_NOT_FOUND);
         }
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
-            OpenCSVBuilder csvBuilder = CSVBuilderFactory.createCsvBuilder();
+            OpenCSV csvBuilder = CSVBuilderFactory. getCensusData();
             Iterator<E> stateCensusIterator = csvBuilder.getIterator(reader, censusCSVClass);
             Iterable<E> stateCensuses = () -> stateCensusIterator;
-            if (censusCSVClass.getName().equals("com.bridgelabz.dto.CSVStateCensus")) {
+            if (censusCSVClass.getName().equals("com.bridgelabz.dto.CSVStatesCensus")) {
                 StreamSupport.stream(stateCensuses.spliterator(), false)
                         .map(CSVStatesCensus.class::cast)
-                        .forEach(censusCSV -> censusDAOMap.put(CSVStatesCensus.State, new CensusDAO(censusCSV)));
+                        .forEach(censusCSV -> censusDAOMap.put(censusCSV.state, new CensusDAO(censusCSV)));
             } else if (censusCSVClass.getName().equals("com.bridgelabz.dto.CSVUSCensus")) {
                 StreamSupport.stream(stateCensuses.spliterator(), false)
                         .map(CSVUSCensus.class::cast)

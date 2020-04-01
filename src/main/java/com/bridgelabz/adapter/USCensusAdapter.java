@@ -1,8 +1,8 @@
-package com.bridgeLabzs.adapter;
+package com.bridgelabz.adapter;
 
-import com.bridgeLabzs.DAO.CensusDAO;
-import com.bridgeLabzs.dto.CSVUSCensus;
-import com.bridgeLabzs.exception.StatesCensusAnalyserException;
+import com.bridgelabz.dao.CensusDAO;
+import com.bridgelabz.dto.CSVUSCensus;
+import com.bridgelabz.exception.StatesCensusAnalyserException;
 
 import java.util.Map;
 
