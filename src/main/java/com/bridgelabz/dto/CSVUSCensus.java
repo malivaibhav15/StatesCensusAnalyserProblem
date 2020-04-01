@@ -1,9 +1,8 @@
-package com.bridgeLabzs.dto;
+package com.bridgelabz.dto;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class CSVUSCensus
-{
+public class CSVUSCensus {
     @CsvBindByName(column = "State Id", required = true)
     public String StateID;
 
@@ -30,4 +29,16 @@ public class CSVUSCensus
 
     @CsvBindByName(column = "Housing Density", required = true)
     public float HousingDensity;
+
+    public CSVUSCensus(String stateID, String state, int populationDensity, long population, long area, String housingUnits, String waterArea, String landArea, float housingDensity) {
+        StateID = stateID;
+        State = state;
+        PopulationDensity = populationDensity;
+        Population = population;
+        Area = area;
+        HousingUnits = housingUnits;
+        WaterArea = waterArea;
+        LandArea = landArea;
+        HousingDensity = housingDensity;
+    }
 }
