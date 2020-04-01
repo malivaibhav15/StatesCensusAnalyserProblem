@@ -1,7 +1,7 @@
-package com.bridgelabz.services;
+package com.bridgelabz.service;
 
 public class CSVBuilderFactory {
-    public static OpenCSVBuilder createCsvBuilder() {
-        return new OpenCSVBuilder();
+    public static OpenCSV getCensusData() {
+        return new OpenCSV();
     }
 }
