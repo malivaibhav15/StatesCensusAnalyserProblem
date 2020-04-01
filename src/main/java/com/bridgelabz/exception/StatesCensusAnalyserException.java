@@ -1,4 +1,4 @@
-package com.bridgeLabzs.exception;
+package com.bridgelabz.exception;
 
 public class StatesCensusAnalyserException extends Exception {
     public ExceptionType exceptionType;
@@ -11,7 +11,6 @@ public class StatesCensusAnalyserException extends Exception {
 
     //ENUM CLASS
     public enum ExceptionType {
-        FILE_NOT_FOUND, INCORRECT_FILE_TYPE, NO_CENSUS_DATA, DELIMITER_AND_HEADER_INCORRECT,INVALID_COUNTRY, UNABLE_TO_PARSE
-
+        FILE_NOT_FOUND, NO_CENSUS_DATA, DELIMITER_AND_HEADER_INCORRECT, INVALID_COUNTRY, UNABLE_TO_PARSE
     }
 }
