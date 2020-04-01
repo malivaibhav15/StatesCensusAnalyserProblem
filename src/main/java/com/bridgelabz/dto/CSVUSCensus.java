@@ -10,7 +10,7 @@ public class CSVUSCensus {
     public String State;
 
     @CsvBindByName(column = "Population Density", required = true)
-    public int PopulationDensity;
+    public long PopulationDensity;
 
     @CsvBindByName(column = "Population", required = true)
     public long Population;
@@ -18,27 +18,15 @@ public class CSVUSCensus {
     @CsvBindByName(column = "Total area", required = true)
     public long Area;
 
-    @CsvBindByName(column = "Housing units", required = true)
-    public String HousingUnits;
-
-    @CsvBindByName(column = "Water area", required = true)
-    public String WaterArea;
-
-    @CsvBindByName(column = "Land Area", required = true)
-    public String LandArea;
-
     @CsvBindByName(column = "Housing Density", required = true)
     public float HousingDensity;
 
-    public CSVUSCensus(String stateID, String state, int populationDensity, long population, long area, String housingUnits, String waterArea, String landArea, float housingDensity) {
+    public CSVUSCensus(String stateID, String state, long populationDensity, long population, long area )
+    {
         StateID = stateID;
         State = state;
         PopulationDensity = populationDensity;
         Population = population;
         Area = area;
-        HousingUnits = housingUnits;
-        WaterArea = waterArea;
-        LandArea = landArea;
-        HousingDensity = housingDensity;
     }
 }
