@@ -1,4 +1,4 @@
-package com.bridgeLabzs.adapter;
+package com.bridgeLabzs.dto;
 
 import com.opencsv.bean.CsvBindByName;
 
@@ -11,13 +11,13 @@ public class CSVUSCensus
     public String State;
 
     @CsvBindByName(column = "Population Density", required = true)
-    public String PopulationDensity;
+    public int PopulationDensity;
 
     @CsvBindByName(column = "Population", required = true)
-    public String Population;
+    public long Population;
 
     @CsvBindByName(column = "Total area", required = true)
-    public String Area;
+    public long Area;
 
     @CsvBindByName(column = "Housing units", required = true)
     public String HousingUnits;
@@ -29,5 +29,5 @@ public class CSVUSCensus
     public String LandArea;
 
     @CsvBindByName(column = "Housing Density", required = true)
-    public String HousingDensity;
+    public float HousingDensity;
 }

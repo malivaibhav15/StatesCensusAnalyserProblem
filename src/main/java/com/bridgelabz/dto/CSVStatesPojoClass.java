@@ -1,8 +1,8 @@
-package com.bridgeLabzs.model;
+package com.bridgeLabzs.dto;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class CSVStateCode {
+public class CSVStatesPojoClass {
 
     @CsvBindByName(column = "StateCode", required = true)
     public String StateCode;
@@ -14,10 +14,10 @@ public class CSVStateCode {
     public int TIN;
 
 
-    public CSVStateCode() {
+    public CSVStatesPojoClass() {
     }
 
-    public CSVStateCode(int srNo, String stateName, int TIN, String stateCode) {
+    public CSVStatesPojoClass(int srNo, String stateName, int TIN, String stateCode) {
         SrNo = srNo;
         StateName = stateName;
         this.TIN = TIN;
